@@ -8,8 +8,8 @@ class Report:
 	sheet = ''	# Sheet var
 
 	def __init__(this,name):
-		this.wb = load_workbook(name) 					# Open file
-		this.sheet = this.wb.get_sheet_names()[0]		# Get the first element of the tuple sheet names
+		this.wb = load_workbook(name) 			# Open file
+		this.sheet = this.wb.get_sheet_names()[0]	# Get the first element of the tuple sheet names
 	
 	def get_edges(this):
 	# Gets the Last Column and last Row that have data
@@ -48,10 +48,10 @@ class Report:
 
 			# GET DATA VALUES #
 
-			data_mun = this.wb[this.sheet].cell(row = i, column = index_mun).value 					# Municipio 
-			data_com = this.wb[this.sheet].cell(row = i, column = index_com).value 					# Comunidad 
-			data_has = this.wb[this.sheet].cell(row = i, column = index_has).value 					# Has
-			data_trampas = this.wb[this.sheet].cell(row = i, column = index_trampas).value 			# Trampas
+			data_mun = this.wb[this.sheet].cell(row = i, column = index_mun).value 			# Municipio 
+			data_com = this.wb[this.sheet].cell(row = i, column = index_com).value 			# Comunidad 
+			data_has = this.wb[this.sheet].cell(row = i, column = index_has).value 			# Has
+			data_trampas = this.wb[this.sheet].cell(row = i, column = index_trampas).value 		# Trampas
 			data_instaladas = this.wb[this.sheet].cell(row = i, column = index_instaladas).value 	# Trampas Instaladas 
 			data_productor = this.wb[this.sheet].cell(row = i, column = index_productor).value  	# Productor 
 			data_diaphorinas = this.wb[this.sheet].cell(row = i, column = index_diaphorina).value 	# Diaphorina
@@ -92,8 +92,8 @@ class Report:
 
 def main():
 
-	reporte = Report('report.xlsx')						# Instance of Class
-	max_row, max_column = reporte.get_edges()			# Get Max Row and Max Column
+	reporte = Report('YOUR_FILE_HERE.xlsx')			# Instance of Class
+	max_row, max_column = reporte.get_edges()		# Get Max Row and Max Column
 	index = reporte.index_fields(max_row,max_column)	# Index of each field
 	out = 'MUNICIPIO; LOCALIDAD; SUPERFICIE; REVISADAS; INSTALADAS; DIAPHORINAS; PRODUCTORES; PREDIOS \n'	# Out var filled with the titles at first line
 
@@ -116,8 +116,8 @@ def main():
 			sup = data_totals[i][j]['SUPERFICIE']
 			rev = data_totals[i][j]['TRAMPAS REVISADAS']
 			ins = data_totals[i][j]['TRAMPAS INSTALADAS']
-			pro = len(data_totals[i][j]['PRODUCTOR']) # Counts the array len to know the quantity
-			ubc = len(data_totals[i][j]['UBICACION']) # Counts the array len to know the quantity
+			pro = len(data_totals[i][j]['PRODUCTOR']						# Counts the array len to know the quantity
+			ubc = len(data_totals[i][j]['UBICACION']) 						# Counts the array len to know the quantity
 			dph = data_totals[i][j]['DIAPHORINAS']
 			out = out + "{0};{1};{2};{3};{4};{5};{6};{7}\n".format(mun,loc,sup,rev,ins,dph,pro,ubc)	# Save the printed data in out
 
